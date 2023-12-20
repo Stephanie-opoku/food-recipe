@@ -1,9 +1,12 @@
 const express = require('express')
 const fs = require('fs')
 const path = require('path')
-const app = express()
 const helmet = require('helmet')
+const steph = require('./routes/basicroutes')
 
+
+
+const app = express()
    // requiring the package 
 const dotEnv = require('dotenv')
 dotEnv.config()
@@ -14,13 +17,7 @@ const port = process.env.PORT || 4500
 app.use(express.static('public'))
 
 
-app.get('/', (req,res)=>{
-   // res.header('Content-Type', 'text/css');
-   res.sendFile(__dirname+'/index.html') 
-   
-})
-
-
+app.use('/',steph)
 
 
 app.listen(port,()=>{
