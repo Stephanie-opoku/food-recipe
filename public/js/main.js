@@ -4,10 +4,13 @@ const btnSubmit = document.querySelector('#submit')
 const txtcontext = document.querySelector('#txtContent')
 
 
-// bible api base point
-const apiUrl = 'https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata';
+//  api base point
+const apiUrlBase = 'https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata';
+ 
+ // Declare inputValue outside of the event listener
+    let inputValue;
 
-txtcontext = 
+ 
 // add event listner
 btnSubmit.addEventListener('click', ()=>{
     let inputValue = btnSearch.value
@@ -26,7 +29,8 @@ btnSubmit.addEventListener('click', ()=>{
 
 
 
-// Fetch data from the API
+// Fetch data from the API based on the search item
+const apiUrl = apiUrlBase + inputValue;
 fetch(apiUrl)
     .then(response => {
         if (!response.ok) {
@@ -46,22 +50,33 @@ fetch(apiUrl)
 function displayData(data) {
     const container = txtcontext
 
-    // Check if 'meals' property exists and is an array
-    if (data.meals && Array.isArray(data.meals)) {
-        // Displaying data with images
-        const content = data.meals.map(item => {
-            return `
-                <div>
-                    <h2>${item.strMeal}</h2>
-                    <img src="${item.strMealThumb}" alt="${item.strMeal}">
-                    <p>${item.strInstructions}</p>
-                </div>
-            `;
-        }).join('');
+     // Clear existing content
+     container.innerHTML = '';
 
-        container.innerHTML += content;
+         // Log the received data to the console for debugging
+    console.log('Received data:', data);
+
+    // Check if 'meals' property exists and is not null
+    if (data.meals !== null) {
+        // Check if 'meals' is an array
+        if (Array.isArray(data.meals)) {
+            // Displaying data with images
+            const content = data.meals.map(item => {
+                return `
+                    <div>
+                        <h2>${item.strMeal}</h2>
+                        <img src="${item.strMealThumb}" alt="${item.strMeal}">
+                        <p>${item.strInstructions}</p>
+                    </div>
+                `;
+            }).join('');
+
+            container.innerHTML = content;
+        } else {
+            console.error('Invalid data format: meals is not an array', data);
+        }
     } else {
-        console.error('Invalid data format:', data);
+        console.error('Invalid data format: meals is null', data);
     }
 }
 
