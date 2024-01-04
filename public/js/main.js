@@ -1,32 +1,34 @@
 // access the btn and input
 const txtcontext = document.querySelector('#txtContent')
 const btnSubmit = document.querySelector('#submit')
+const content = document.querySelector('#output')
 
-
+// content.innerHTML= 'Hello'
 
  
 // add event listner
 btnSubmit.addEventListener('click',async ()=>{
-    // const searchResults = document.querySelector('#search-results'); // Replace '#search-results' with the actual ID or class of your element.
+   
     const searchInput = document.querySelector('#search').value
     const results = await searchMeal(searchInput)
     console.log(results.meals);
-    
+    results.meals.forEach(meal=>{
+        console.log(meal);
+    })
     if (results.meals) {
-        let content = '';
+        
         results.meals.forEach(meal => {
-            content += `
-                <div class="container">
-                    <div class="my-5">
-                        <span>${meal.strMeal}</span>
-                        <img class="img-fluid rounded-start" id='imgBtn' src="${meal.strMealThumb}" alt="${meal.strMeal}">
-                    </div>
-                </div>
+            content.innerHTML= `
+            <div class="container">
+             <div class="my-5">
+                <span></span>
+                 <img class="img-fluid rounded-start"id='imgBtn' src="${meal.strMealThumb}" alt="${meal.strMeal}">
+             </div>
+            </div>
             `;
         });
-        searchResults.innerHTML = content;
     } else {
-        searchResults.innerHTML = '<p>No meals found.</p>';
+        searchInput.innerHTML = '<p>No meals found.</p>';
     }
 })
    
