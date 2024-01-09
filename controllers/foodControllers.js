@@ -15,12 +15,17 @@ const about =(req,res)=>{
     const filePath = path.join(__dirname, '..', 'views/about.html');
     res.sendFile(filePath)
 }
+const apiData =(req,res)=>{
+    const filePath = path.join(__dirname, '..', 'views/api.html');
+    res.sendFile(filePath)
+}
 
 
 module.exports = {
     home,
     contact,
-    about
+    about,
+    apiData
 }
 
 
