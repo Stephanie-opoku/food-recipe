@@ -83,11 +83,11 @@ body {
     
 }
 #img{
-    background-image: url(  /images/84288054.jpg);
+    background-image: url(  /images/10_simple_tips_to_be_a_great_cook10.webp);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 100vh;
+    height: -10vh;
     width: 100%;
     
 }
@@ -177,19 +177,10 @@ body {
 box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 .btn2{
-font-style: italic;
-color: #fff;
 background-color:rgb(240,85,55) ;
-}
-#btn2 a{
- text-decoration: none;
- color: #fff;
-}
-#btn2{
-  background-color:rgb(240,85,55) ;
-  border-color: rgb(240,85,55) ;
-}
+color: #fff;
 
+}
 #color1{
   color: rgb(240,85,55);
   display: inline-flex;
@@ -300,7 +291,7 @@ footer {
   background-color: #ddd;
 }
 
-.ingredients:hover .dropdown-content {
+.ingredients:hover dropdown-content {
   display: block;
 }
 ul li ul.nav-drop li{

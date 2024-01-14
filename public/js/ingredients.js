@@ -3,7 +3,7 @@ const mealContainer = document.querySelector('.meal-container');
 
 button.addEventListener('click', async () => {
     const search = document.querySelector('#search').value;
-    const api = `https://www.themealdb.com/api/json/v1/1/search.php?s=${search}`;
+    const api = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${search}`;
     
     fetch(api)
         .then(response => response.json())
